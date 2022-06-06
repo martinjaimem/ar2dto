@@ -50,12 +50,14 @@ RSpec.describe ".has_dto" do
     end
 
     it "exposes the attributes" do
-      expect(subject.attributes).to include(
-        attributes.stringify_keys.merge(
-          "id" => nil,
-          "updated_at" => nil
+      expect(subject).to have_attributes(
+        attributes.merge(
+          id: nil,
+          updated_at: nil
         )
       )
     end
+
+    it { is_expected.not_to respond_to(:persisted?) }
   end
 end
